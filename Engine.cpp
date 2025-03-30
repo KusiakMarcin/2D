@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Line.h"
 #include "Circle.h"
+#include "Square.h"
 Engine::Engine(const char *title,int posx, int posy, int width, int height, int flags) {
     SDL_Init(SDL_INIT_EVERYTHING);
     isRunning = true;
@@ -15,8 +16,13 @@ Engine::Engine(const char *title,int posx, int posy, int width, int height, int 
     }
     Point A = {20,20};
     Point B = {300,300};
+    Line line(A,B);
+    line.drawLine(renderer);
     Circle f(300,300,100);
     f.DrawCircle(renderer);
+    Square qwe(20,20,100,100);
+    qwe.DrawSquare(renderer);
+
 
     SDL_RenderPresent(renderer);
 

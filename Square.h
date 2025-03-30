@@ -10,19 +10,12 @@ class Square {
 
     int cornerX;
     int cornerY;
-    double Width;
-    double Height;
+    int Width;
+    int Height;
 public:
-    Square(int PosX,int PosY,double Width, double Height){
-        this->cornerX = PosX;
-        this->cornerY = PosY;
-        this->Width = Width;
-        this->Height = Height;
-    }
+    Square(int PosX,int PosY,int Width, int Height);
 
-    void DrawSquare(){
-        for()
-    }
+    void DrawSquare(SDL_Renderer * renderer);
 };
 
 
