@@ -5,12 +5,10 @@
 #ifndef SDL2TEST_LINE_H
 #define SDL2TEST_LINE_H
 #include "SDL.h"
-struct Point{
-    int x;
-    int y;
-};
+#include "Primitive.h"
 
-class Line {
+
+class Line : Primitive{
 public:
     double Ratio;
     Point aPoint;

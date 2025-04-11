@@ -14,14 +14,22 @@ Line::Line(Point a, Point b) {
     this->bPoint.y=b.y;
     int tmpxd = b.x - a.x;
     int tmpyd = b.y - a.y;
-    this->Ratio = tmpxd / tmpyd;
+    this->Ratio = (float)tmpxd/(float)tmpyd;
 }
 
 void Line::drawLine(SDL_Renderer * renderer) {
-    int tmpy = aPoint.y;
     SDL_SetRenderDrawColor(renderer,255,255,255,255);
-    for(int i =aPoint.x; i < bPoint.x; i++){
-        SDL_RenderDrawPoint(renderer,i,tmpy);
-        tmpy+= Ratio;
-    }
+        double tmpx = aPoint.x;
+        double tmpy = aPoint.y;
+        bool startConX = tmpx<bPoint.x;
+        bool startConY = tmpy<bPoint.y;
+        while(startConX==(tmpx<bPoint.x)&&startConY==(tmpy<bPoint.y)){
+            SDL_RenderDrawPoint(renderer,(int)tmpx,(int)tmpy);
+            tmpx+= Ratio;
+            tmpy+= 1/Ratio;
+
+        }
+
+
+
 }
