@@ -33,3 +33,11 @@ void Line::drawLine(SDL_Renderer * renderer) {
 
 
 }
+
+void Line::setA(Point newPoint) {
+    aPoint = newPoint;
+}
+
+void Line::setB(Point newPoint) {
+    bPoint = newPoint;
+}

@@ -8,7 +8,7 @@
 #include <string>
 
 class Engine{
-    private:
+    protected:
         SDL_Window *window;
         SDL_Renderer *renderer;
         SDL_Event event;

@@ -7,10 +7,10 @@
 Engine::Engine(const char *title,int posx, int posy, int width, int height, int flags) {
     SDL_Init(SDL_INIT_EVERYTHING);
     isRunning = true;
-    flags = SDL_WINDOW_MAXIMIZED;
+    flags = SDL_WINDOW_SHOWN|SDL_WINDOW_MOUSE_CAPTURE;
 
 
-    int err = SDL_CreateWindowAndRenderer(width, height, flags, &window, &renderer);
+    int err = SDL_CreateWindowAndRenderer(width, height,flags, &window, &renderer);
     if (err) {
         std::cout << "bruh" << SDL_GetError() << std::endl;
     }
@@ -19,13 +19,13 @@ Engine::Engine(const char *title,int posx, int posy, int width, int height, int 
     Line line(A,B);
     line.drawLine(renderer);
     Rectangle rectangle(20,20,150,150);
-    rectangle.DrawSquare(renderer);
+    rectangle.DrawRectangle(renderer);
 
 
 
     SDL_RenderPresent(renderer);
 
-    loop();
+    //loop();
 
 }
 Engine::~Engine() {
@@ -41,8 +41,8 @@ void Engine::loop() {
     int i=1;
     while(isRunning){
         Uint64 start = SDL_GetPerformanceCounter();
-        SDL_SetRenderDrawColor(renderer,0,0,0,255);
-        SDL_RenderClear(renderer);
+//        SDL_SetRenderDrawColor(renderer,0,0,0,255);
+//        SDL_RenderClear(renderer);
 
         //Point tmp = square.getCorner();
         //square.Transposition(tmp.x+i,tmp.y+i,renderer);
@@ -86,6 +86,7 @@ void Engine::loop() {
 
 void Engine::terminate(){
     isRunning = false;
+    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
 

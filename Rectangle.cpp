@@ -10,10 +10,28 @@ Rectangle::Rectangle(int PosX, int PosY, int Width, int Height) {
     this->corner.y= PosY;
     this->Width = Width;
     this->Height = Height;
+    A = corner;
+    B.x = corner.x;
+    B.y = corner.y+Height;
+    C.x = corner.x + Width;
+    C.y = corner.y +Height;
+    D.x = corner.x + Width;
+    D.y = corner.y;
 
 }
 
+void Rectangle::DrawRectangle(SDL_Renderer * renderer){
 
+    Line tmp(A,B);
+    tmp.drawLine(renderer);
+    tmp.setA(C);
+    tmp.drawLine(renderer);
+    tmp.setB(D);
+    tmp.drawLine(renderer);
+    tmp.setA(A);
+    tmp.drawLine(renderer);
+
+}
 
 void Rectangle::DrawSquare(SDL_Renderer * renderer) {
 

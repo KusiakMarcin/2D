@@ -15,6 +15,9 @@ public:
     Point bPoint;
     Line(Point a, Point b);
     void drawLine(SDL_Renderer * renderer);
+    void setA(Point newPoint);
+    void setB(Point newPoint);
+
 };
 
 

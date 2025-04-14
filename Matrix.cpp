@@ -23,15 +23,25 @@ void Matrix::printMatrix() {
 }
 
 
-//int Matrix::computeDet(int *matrix[],int dim){
-//    int det;
-//    if(dim>2){
-//        for(int i=0 ;i<dim;i++){
-//
-//        }
-//    }
-//    return computeDet();
-//}
+int Matrix::computeDet(int *matrix[],int dim){
+    int det =0;
+   if(matrix==NULL&&dim==0){
+    for(int i=0; i<dimension;i++){
+
+        det = det + (*(this->matrix[i])*
+                computeDet(this->matrixCofactor(i,0)->matrix,dimension-1));
+    }
+
+   }else{
+       if (dim == 2) return *(matrix[0]) * (*(matrix[1] + 1)) - *(matrix[0] + 1) * (*(matrix[1]));
+       for(int i=0; i<dim;i++){
+           Matrix tmp(matrix,dim);
+           det = det + (*(matrix[i])*
+                   computeDet(tmp.matrixCofactor(i,0)->matrix,dim-1));
+       }
+   }
+    return det;
+}
 
 
 Matrix * Matrix::matrixCofactor(int column, int verse){
