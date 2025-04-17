@@ -10,7 +10,7 @@
 class Engine{
     private:
         SDL_Window *window;
-        SDL_Surface* surface;
+        SDL_Renderer *renderer;
         SDL_Event event;
         bool isRunning;
     public:
@@ -18,7 +18,7 @@ class Engine{
         ~Engine();
         void loop();
         void terminate();
-
+        void refreshFrame();
 };
 
 

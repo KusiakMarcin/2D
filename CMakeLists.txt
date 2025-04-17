@@ -12,7 +12,9 @@ add_executable(PGK2D main.cpp
         Line.h
         Circle.cpp
         Circle.h
-        Square.cpp
-        Square.h
+        Rectangle.cpp
+        Rectangle.h
+        Primitive.cpp
+        Primitive.h
 )
 target_link_libraries(PGK2D ${SDL2_LIBRARIES})

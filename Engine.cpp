@@ -2,29 +2,31 @@
 #include <iostream>
 #include "Line.h"
 #include "Circle.h"
-#include "Square.h"
+#include "Rectangle.h"
 Engine::Engine(const char *title,int posx, int posy, int width, int height, int flags) {
     SDL_Init(SDL_INIT_EVERYTHING);
     isRunning = true;
     flags = SDL_WINDOW_MAXIMIZED;
 
-    SDL_Window *window;
-    SDL_Renderer *renderer;
+
+
     int err = SDL_CreateWindowAndRenderer(width, height, flags, &window, &renderer);
     if (err) {
         std::cout << "bruh" << SDL_GetError() << std::endl;
     }
+
     Point A = {20,20};
-    Point B = {300,300};
-    Line line(A,B);
+    Point B = {20,100};
+    Point c= {100,20};
+    Point d = {230,245};
+    Line line(A,c);
     line.drawLine(renderer);
-    Circle f(300,300,100);
-    f.DrawCircle(renderer);
-    Square qwe(20,20,100,100);
-    qwe.DrawSquare(renderer);
-
-
+    Rectangle rect (60,60,100,100);
+    rect.DrawRectangle(renderer);
     SDL_RenderPresent(renderer);
+
+
+
 
     loop();
 
@@ -73,8 +75,15 @@ void Engine::loop() {
 void Engine::terminate(){
     isRunning = false;
     SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
     SDL_Quit();
 
+}
+
+void Engine::refreshFrame() {
+    SDL_RenderPresent(renderer);
+    SDL_SetRenderDrawColor(renderer,0,0,0,0);
+    SDL_RenderClear(renderer);
 }
 //
 // Created by marcin on 16.03.25.
