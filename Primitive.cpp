@@ -3,3 +3,7 @@
 //
 
 #include "Primitive.h"
+
+void Primitive::setColor(RGBA color) {
+    this->color=color;
+}

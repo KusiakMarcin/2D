@@ -9,7 +9,7 @@
 #include "Rectangle.h"
 #include "Line.h"
 
-Rectangle::Rectangle(int PosX, int PosY, int Width, int Height) {
+Rectangle::Rectangle(int PosX, int PosY, int Width, int Height,RGBA color) {
     this->corner.x = PosX;
     this->corner.y= PosY;
     this->Width = Width;
@@ -21,12 +21,13 @@ Rectangle::Rectangle(int PosX, int PosY, int Width, int Height) {
     C.y = corner.y +Height;
     D.x = corner.x + Width;
     D.y = corner.y;
+    this->color = color;
 
 
 }
 
 void Rectangle::DrawRectangle(SDL_Renderer * renderer){
-
+    SDL_SetRenderDrawColor(renderer,color.R,color.G,color.B,color.A);
     Line tmp1(A,B);
     Line tmp2(A,D);
     Line tmp3(C,B);
@@ -51,10 +52,10 @@ void Rectangle::Translation(int targetX, int targetY) {
     D.y = corner.y;
 
 }
-//
-//Point Rectangle::getCorner() {
-//    return corner;
-//}
+
+Point Rectangle::getCorner() {
+    return corner;
+}
 void Rectangle::FillColor(SDL_Renderer* renderer, RGBA color){
 
 }

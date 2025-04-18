@@ -5,14 +5,8 @@
 #ifndef SDL2TEST_RECTANGLE_H
 #define SDL2TEST_RECTANGLE_H
 #include "Line.h"
-struct RGBA{
-    int R;
-    int G;
-    int B;
-    int A;
-
-};
-class Rectangle{
+#include "Primitive.h"
+class Rectangle : Primitive{
 
     Point corner;
     double Width;
@@ -24,7 +18,7 @@ class Rectangle{
 
 
 public:
-    Rectangle(int PosX, int PosY, int Width, int Height);
+    Rectangle(int PosX, int PosY, int Width, int Height,RGBA color = COLORS[WHITE]);
 
 
     void DrawRectangle(SDL_Renderer * renderer);
