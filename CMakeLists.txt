@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 
-project(SDL2Test)
+project(2D)
+
 
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})

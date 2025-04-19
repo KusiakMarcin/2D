@@ -18,7 +18,7 @@ public:
     double dy;
     Point aPoint;
     Point bPoint;
-    Line(Point a, Point b,RGBA color=COLORS[WHITE]);
+    Line(Point a, Point b,SDL_Color color=COLORS[WHITE]);
     void drawLine(SDL_Renderer * renderer);
     void setA(Point newPoint);
     void setB(Point newPoint);

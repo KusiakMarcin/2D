@@ -7,7 +7,7 @@
 
 
 
-Line::Line(Point a, Point b,RGBA color) {
+Line::Line(Point a, Point b,SDL_Color color) {
     this->aPoint.x=a.x;
     this->aPoint.y=a.y;
     this->bPoint.x=b.x;
@@ -20,7 +20,7 @@ Line::Line(Point a, Point b,RGBA color) {
 }
 
 void Line::drawLine(SDL_Renderer * renderer) {
-    SDL_SetRenderDrawColor(renderer,color.R,color.G,color.B,color.A);
+    SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
     double tmpx = aPoint.x;
     double tmpy = aPoint.y;
     bool startConX = tmpx<=bPoint.x;

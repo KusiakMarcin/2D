@@ -17,16 +17,9 @@ Engine::Engine(const char *title,int posx, int posy, int width, int height, int 
 
     Point A = {20,20};
     Point B = {20,100};
-    Point c= {100,20};
-    Point d = {230,245};
-    Line line(A,c);
-    line.drawLine(renderer);
-    Rectangle rect (60,60,100,100);
-    rect.DrawRectangle(renderer);
+    Rectangle rect(20,20,200,200,"mapa.bmp");
+    rect.DrawRectangle(renderer,true);
     SDL_RenderPresent(renderer);
-
-
-
 
     loop();
 

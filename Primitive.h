@@ -4,22 +4,26 @@
 
 #ifndef SDL2TEST_PRIMITIVE_H
 #define SDL2TEST_PRIMITIVE_H
+#include "SDL.h"
+#include <iostream>
 
-struct RGBA{
-    int R;
-    int G;
-    int B;
-    int A;
-};
 enum Palette{WHITE,BLACK,RED,GREEN,BLUE};
-const RGBA COLORS[5]{RGBA{255,255,255,255},RGBA{0,0,0,0},RGBA{255,0,0,1},
-                     RGBA{0,255,0,1},RGBA{0,0,255,1}};
+const SDL_Color COLORS[5]{SDL_Color{255,255,255,255},SDL_Color{0,0,0,0},SDL_Color{255,0,0,1},
+                          SDL_Color{0,255,0,1},SDL_Color{0,0,255,1}};
 class Primitive {
 protected:
-    RGBA color;
-
+    SDL_Color color;
+    SDL_Color fillColor;
+    bool texture;
+    SDL_Surface * Texture;
+    int TextureCenter;
 public:
-    void setColor(RGBA color);
+    void setColor(SDL_Color color);
+    void setFill(SDL_Color color);
+
+    static SDL_Color ExtractColorFromPixel(Uint32 pixel,SDL_PixelFormat*format);
+
+
 
 };
 

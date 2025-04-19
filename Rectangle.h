@@ -6,7 +6,7 @@
 #define SDL2TEST_RECTANGLE_H
 #include "Line.h"
 #include "Primitive.h"
-class Rectangle : Primitive{
+class Rectangle : public Primitive {
 
     Point corner;
     double Width;
@@ -17,13 +17,18 @@ class Rectangle : Primitive{
     Point D;
 
 
+
 public:
-    Rectangle(int PosX, int PosY, int Width, int Height,RGBA color = COLORS[WHITE]);
+    Rectangle(int PosX, int PosY, int Width, int Height,
+              SDL_Color color = COLORS[WHITE],SDL_Color fillcolor = COLORS[BLACK]);
+    Rectangle(int PosX, int PosY, int Width, int Height,const char* file);
 
-
-    void DrawRectangle(SDL_Renderer * renderer);
+    void DrawRectangle(SDL_Renderer * renderer,bool fill);
     void Translation(int targetX, int targetY);
-    void FillColor(SDL_Renderer * renderer, RGBA color);
+    void FillColor(SDL_Renderer * renderer);
+    void FillTexture(SDL_Renderer* renderer);
+    void Scaling(double k);
+    void CeterTexture(SDL_Surface* texture);
 
     Point getCorner();
 };

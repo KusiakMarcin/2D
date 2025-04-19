@@ -7,16 +7,24 @@
 #include "math.h"
 #include "SDL.h"
 #define PI 3.14159
-
-class Circle {
+#include "Primitive.h"
+class Circle : public Primitive {
+private:
     int MiddleX;
     int MiddleY;
     double radius;
 
-public:
-    Circle(int posX, int posY,double radius);
 
-    void DrawCircle(SDL_Renderer* renderer);
+public:
+    Circle(int posX, int posY,double radius,SDL_Color color = COLORS[WHITE],SDL_Color fillcolor=COLORS[BLACK]);
+
+    void DrawCircle(SDL_Renderer* renderer,bool fillColor);
+    void FillColor(SDL_Renderer * renderer);
+    void Translation(int targetX, int targetY);
+    int GetMidX();
+    int GetMidY();
+    void Scaling(double k);
+
 
 };
 
