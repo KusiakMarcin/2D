@@ -16,7 +16,8 @@ protected:
     SDL_Color fillColor;
     bool texture;
     SDL_Surface * Texture;
-    int TextureCenter;
+    int TextureCenterX;
+    int TextureCenterY;
 public:
     void setColor(SDL_Color color);
     void setFill(SDL_Color color);

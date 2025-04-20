@@ -29,7 +29,7 @@ public:
     void FillTexture(SDL_Renderer* renderer);
     void Scaling(double k);
     void CeterTexture(SDL_Surface* texture);
-
+    SDL_Surface * getTexture();
     Point getCorner();
 };
 

@@ -14,11 +14,12 @@ Engine::Engine(const char *title,int posx, int posy, int width, int height, int 
     if (err) {
         std::cout << "bruh" << SDL_GetError() << std::endl;
     }
-
     Point A = {20,20};
     Point B = {20,100};
     Rectangle rect(20,20,200,200,"mapa.bmp");
     rect.DrawRectangle(renderer,true);
+
+
     SDL_RenderPresent(renderer);
 
     loop();

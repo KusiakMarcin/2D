@@ -56,10 +56,10 @@ Rectangle::Rectangle(int PosX, int PosY, int Width, int Height,const char* file)
 
 void Rectangle::DrawRectangle(SDL_Renderer * renderer,bool fill){
     SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
-    Line tmp1(A,B);
-    Line tmp2(A,D);
-    Line tmp3(C,B);
-    Line tmp4(C,D);
+    Line tmp1(A,B,color);
+    Line tmp2(A,D,color);
+    Line tmp3(C,B,color);
+    Line tmp4(C,D,color);
     tmp1.drawLine(renderer);
     tmp2.drawLine(renderer);
     tmp3.drawLine(renderer);
@@ -94,20 +94,18 @@ void Rectangle::FillColor(SDL_Renderer* renderer){
             SDL_RenderDrawPoint(renderer,x+corner.x,y+corner.y);
         }
     }
-    SDL_CreateColorCursor(Texture,)
+
 }
 void Rectangle::FillTexture(SDL_Renderer* renderer){
     Uint32* pixels = (Uint32*)Texture->pixels;
     SDL_Color color;
     int ShapeVerticalBorder = (Height+1)/2;
     int ShapeHorizontalBorder = (Width+1)/2;
+
     for(int x=1;x<Width;x++){
         for(int y=1; y<Height;y++){
-            color =ExtractColorFromPixel(pixels[
-                    +TextureCenter
-                    -ShapeHorizontalBorder+x
-                    -Texture->pitch*ShapeVerticalBorder
-                    +Texture->pitch]
+            color =ExtractColorFromPixel(pixels[(TextureCenterY-ShapeVerticalBorder+y)
+                                                *(Texture->pitch/4)+x]
                     ,Texture->format);
             SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
             SDL_RenderDrawPoint(renderer,x+corner.x,y+corner.y);
@@ -116,8 +114,8 @@ void Rectangle::FillTexture(SDL_Renderer* renderer){
 }
 
 void Rectangle::CeterTexture(SDL_Surface* texture) {
-
-    TextureCenter = texture->pitch*(texture->h/2)+texture->pitch/2;
+    TextureCenterX = texture->w/2;
+    TextureCenterY = texture->h/2;
 
 }
 

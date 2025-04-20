@@ -31,12 +31,12 @@ SDL_Color Primitive::ExtractColorFromPixel(Uint32 pixel, SDL_PixelFormat *format
     tmp = tmp << format->Bloss;
     color.b=(Uint8)tmp;
     if(format->BitsPerPixel==24){
-        color.a =1;
+        color.a =0;
     }else if(format->BitsPerPixel==32){
         tmp = pixel & format->Amask;
         tmp = tmp >> format->Ashift;
         tmp = tmp << format->Aloss;
-        color.a=(Uint8)tmp;
+        color.a =(Uint8)tmp;
     }
     return color;
 }
