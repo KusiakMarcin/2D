@@ -12,6 +12,19 @@ Circle::Circle(int posX, int posY,double radius,SDL_Color color,SDL_Color fillco
     this-> color = color;
     this->fillColor =fillcolor;
 }
+Circle::Circle(int posX, int posY,double radius,const char* file,SDL_Color color) {
+    this->MiddleX = posX;
+    this->MiddleY = posY;
+    this->radius = radius;
+    this-> color = color;
+    SDL_RWops * buffer = SDL_RWFromFile(file,"r");
+    if(!buffer) {
+        std::cerr<<"buffer error"<<std::endl;
+    }
+    Texture = SDL_LoadBMP_RW(buffer,0);
+    CenterTexture(Texture);
+    texture= true;
+}
 
 void Circle::DrawCircle(SDL_Renderer* renderer,bool fillColor) {
     double tmpRadian = 1.0/radius;
@@ -20,7 +33,8 @@ void Circle::DrawCircle(SDL_Renderer* renderer,bool fillColor) {
         SDL_RenderDrawPoint(renderer,this->MiddleX+radius*cos(i),
                             this->MiddleY+radius*sin(i));
     }
-    if(fillColor) FillColor(renderer);
+    if(fillColor&&!texture) FillColor(renderer);
+    if(fillColor&&texture)FillTexture(renderer);
 }
 
 void Circle::FillColor(SDL_Renderer * renderer){
@@ -60,4 +74,45 @@ void Circle::Scaling(double k) {
 
 int Circle::GetMidY() {
     return MiddleY;
+}
+
+void Circle::CenterTexture(SDL_Surface* texture){
+    TextureCenterY = texture->h/2;
+    TextureCenterX = texture->w/2;
+}
+
+void Circle::FillTexture(SDL_Renderer *renderer) {
+    Uint32* pixels = (Uint32*)Texture->pixels;
+    SDL_Color color;
+
+    for(int x=0; MiddleX + x < MiddleX + radius; x++){
+        color = ExtractColorFromPixel(pixels[(TextureCenterY)*(Texture->pitch/4)+x]
+                ,Texture->format);
+        SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
+        SDL_RenderDrawPoint(renderer, MiddleX + x, MiddleY);
+        color = ExtractColorFromPixel(pixels[(TextureCenterY)*(Texture->pitch/4)-x]
+                ,Texture->format);
+        SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
+        SDL_RenderDrawPoint(renderer, MiddleX - x, MiddleY);
+
+
+        for(int y=0; MiddleY + y < MiddleY + radius * sin(acos(x / radius));y++){
+            color = ExtractColorFromPixel(pixels[(TextureCenterY+y)*(Texture->pitch/4)+TextureCenterX+x]
+                    ,Texture->format);
+            SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
+            SDL_RenderDrawPoint(renderer, MiddleX + x, MiddleY + y);
+            color = ExtractColorFromPixel(pixels[(TextureCenterY-y)*(Texture->pitch/4)+TextureCenterX-x]
+                    ,Texture->format);
+            SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
+            SDL_RenderDrawPoint(renderer, MiddleX - x, MiddleY - y);
+            color = ExtractColorFromPixel(pixels[(TextureCenterY-y)*(Texture->pitch/4)+TextureCenterX+x]
+                    ,Texture->format);
+            SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
+            SDL_RenderDrawPoint(renderer, MiddleX + x, MiddleY - y);
+            color = ExtractColorFromPixel(pixels[(TextureCenterY+y)*(Texture->pitch/4)+TextureCenterX-x]
+                    ,Texture->format);
+            SDL_SetRenderDrawColor(renderer,color.r,color.g,color.b,color.a);
+            SDL_RenderDrawPoint(renderer, MiddleX - x, MiddleY + y);
+        }
+    }
 }

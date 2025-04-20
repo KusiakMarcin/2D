@@ -14,7 +14,7 @@ class Primitive {
 protected:
     SDL_Color color;
     SDL_Color fillColor;
-    bool texture;
+    bool texture = false;
     SDL_Surface * Texture;
     int TextureCenterX;
     int TextureCenterY;

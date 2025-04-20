@@ -14,10 +14,6 @@ Engine::Engine(const char *title,int posx, int posy, int width, int height, int 
     if (err) {
         std::cout << "bruh" << SDL_GetError() << std::endl;
     }
-    Point A = {20,20};
-    Point B = {20,100};
-    Rectangle rect(20,20,200,200,"mapa.bmp");
-    rect.DrawRectangle(renderer,true);
 
 
     SDL_RenderPresent(renderer);
@@ -32,11 +28,15 @@ Engine::~Engine() {
 }
 
 void Engine::loop() {
-
+    Rectangle rect(20,20,200,200,"zaba.bmp");
     while(isRunning){
 
-        if(SDL_PollEvent(&event)== 0){ continue;}
-        else{
+        rect.DrawRectangle(renderer,true);
+        rect.Translation(rect.getCorner().x+1,rect.getCorner().y+1);
+        refreshFrame();
+
+        while(SDL_PollEvent(&event)== 0){
+
             switch (event.type) {
 
             case SDL_QUIT:
@@ -61,8 +61,10 @@ void Engine::loop() {
 
             }
         }
+        SDL_Delay(50);
 
     }
+
 
 }
 

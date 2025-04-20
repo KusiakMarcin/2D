@@ -21,7 +21,7 @@ class Rectangle : public Primitive {
 public:
     Rectangle(int PosX, int PosY, int Width, int Height,
               SDL_Color color = COLORS[WHITE],SDL_Color fillcolor = COLORS[BLACK]);
-    Rectangle(int PosX, int PosY, int Width, int Height,const char* file);
+    Rectangle(int PosX, int PosY, int Width, int Height,const char* file,SDL_Color color = COLORS[WHITE]);
 
     void DrawRectangle(SDL_Renderer * renderer,bool fill);
     void Translation(int targetX, int targetY);

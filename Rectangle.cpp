@@ -29,7 +29,7 @@ Rectangle::Rectangle(int PosX, int PosY, int Width, int Height,
 
 
 }
-Rectangle::Rectangle(int PosX, int PosY, int Width, int Height,const char* file) {
+Rectangle::Rectangle(int PosX, int PosY, int Width, int Height,const char* file,SDL_Color color) {
     this->corner.x = PosX;
     this->corner.y= PosY;
     this->Width = Width;
@@ -42,6 +42,7 @@ Rectangle::Rectangle(int PosX, int PosY, int Width, int Height,const char* file)
     D.x = corner.x + Width;
     D.y = corner.y;
     texture = true;
+    this->color = color;
     SDL_RWops * buffer = SDL_RWFromFile(file,"r");
     if(!buffer) {
         std::cerr<<"buffer error"<<std::endl;
