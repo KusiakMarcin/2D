@@ -28,14 +28,14 @@ Engine::~Engine() {
 }
 
 void Engine::loop() {
-    Rectangle rect(20,20,200,200,"zaba.bmp");
+    Rectangle rect(20,20,100,100,"zaba.bmp");
     while(isRunning){
 
         rect.DrawRectangle(renderer,true);
         rect.Translation(rect.getCorner().x+1,rect.getCorner().y+1);
         refreshFrame();
 
-        while(SDL_PollEvent(&event)== 0){
+        while(SDL_PollEvent(&event)){
 
             switch (event.type) {
 

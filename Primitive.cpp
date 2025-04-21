@@ -41,3 +41,6 @@ SDL_Color Primitive::ExtractColorFromPixel(Uint32 pixel, SDL_PixelFormat *format
     return color;
 }
 
+void Primitive::setTextureFill(bool value) {
+    texture = value;
+}
