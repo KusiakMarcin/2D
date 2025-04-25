@@ -8,6 +8,7 @@
 #include "SDL.h"
 #define PI 3.14159
 #include "Primitive.h"
+#include "Phisical.h"
 
 /**
  * Klasa reprezentująca okrąg jako prymityw graficzny.
@@ -15,12 +16,12 @@
  * Dziedziczy z klasy Primitive. Umożliwia rysowanie okręgu z kolorem lub teksturą wypełnienia,
  * a także wykonywanie operacji takich jak translacja, skalowanie oraz ustawianie środka tekstury.
  */
-class Circle : public Primitive {
+class Circle : public Primitive, public Phisical{
 private:
     /**
      * Współrzędne środka okręgu.
      */
-    int MiddleX,MiddleY;
+    double MiddleX,MiddleY;
     /**
      * Promień okręgu.
      */
@@ -98,7 +99,8 @@ public:
      * @param texture Wskaźnik do tekstury SDL_Surface.
      */
     void CenterTexture(SDL_Surface* texture);
-
+    bool Colision(Point point) override;
+    bool Colision(Line line )override;
 };
 
 

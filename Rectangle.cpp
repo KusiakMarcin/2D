@@ -120,5 +120,36 @@ void Rectangle::CeterTexture(SDL_Surface* texture) {
 
 }
 
+bool Rectangle::Colision(Point point) {
+    return true;
+}
+
+bool Rectangle::Colision(Line line) {
+    return true;
+}
+
+double Rectangle::getHeight() {
+    return Height;
+}
+
+double Rectangle::getWidht() {
+    return Width;
+}
+
+Point Rectangle::getA() const {
+    return A;
+}
+
+Point Rectangle::getB() const {
+    return B;
+}
+
+Point Rectangle::getC() const {
+    return C;
+}
+
+Point Rectangle::getD() const {
+    return D;
+}
 
 

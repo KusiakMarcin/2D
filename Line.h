@@ -70,6 +70,14 @@ public:
      * @param newPoint Nowy punkt końcowy.
      */
     void setB(Point newPoint);
+
+    /**
+     * Zwraca dlugosc lini
+     *
+     * .
+     */
+
+    double Lenght();
 };
 
 

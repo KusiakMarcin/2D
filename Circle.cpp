@@ -116,3 +116,49 @@ void Circle::FillTexture(SDL_Renderer *renderer) {
         }
     }
 }
+
+bool Circle::Colision(Point point) {
+    Line tmp(Point{MiddleX,MiddleY},point);
+    if(tmp.Lenght()<=radius) return true;
+    else return false;
+
+}
+bool Circle::Colision(Line line) {
+Point p1 = line.aPoint;
+Point p2 = line.bPoint;
+
+float dx = p2.x - p1.x;
+float dy = p2.y - p1.y;
+
+float fx = MiddleX - p1.x;
+float fy = MiddleY - p1.y;
+
+float lengthSquared = dx * dx + dy * dy;
+
+float t = (fx * dx + fy * dy) / lengthSquared;
+t = std::fmax(0, std::fmin(1, t)); // Clamp to segment
+
+float closestX = p1.x + t * dx;
+float closestY = p1.y + t * dy;
+
+float distX = MiddleX - closestX;
+float distY = MiddleY - closestY;
+
+float distanceSquared = distX * distX + distY * distY;
+
+return distanceSquared <= radius * radius;
+}
+//bool Circle::Colision(Line line) {
+//    double A = line.bPoint.y-line.aPoint.y;
+//    double B = line.bPoint.x-line.aPoint.x;
+//    double C = line.aPoint.x*line.bPoint.y+line.aPoint.y*line.bPoint.x;
+//    double nominator = A*MiddleX+B*MiddleY+C;
+//    if(nominator<0) nominator*=-1;
+//    double denominator = sqrt(A*A+B*B);
+//    if(nominator/denominator<=radius) return true;
+//    else return false;
+//}
+
+
+
+

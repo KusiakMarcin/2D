@@ -4,7 +4,7 @@
 
 #include "Line.h"
 #include "SDL.h"
-
+#include "math.h"
 
 
 Line::Line(Point a, Point b,SDL_Color color) {
@@ -76,4 +76,12 @@ void Line::setB(Point newPoint) {
     dx = bPoint.x - aPoint.x;
     dy = bPoint.y - aPoint.y;
     if(dx!=0)Ratio = dy/dx;
+}
+
+double Line::Lenght() {
+    double xfactor =aPoint.x-bPoint.x;
+    xfactor*=xfactor;
+    double yfactor = aPoint.y-bPoint.y;
+    yfactor*=yfactor;
+    return sqrt(xfactor+yfactor);
 }

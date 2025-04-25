@@ -6,13 +6,14 @@
 #define SDL2TEST_RECTANGLE_H
 #include "Line.h"
 #include "Primitive.h"
+#include "Phisical.h"
 
 /**
  * Klasa reprezentująca prostokąt.
  *
  * Dziedziczy z klasy Primitive.
  */
-class Rectangle : public Primitive {
+class Rectangle : public Primitive,public Phisical {
 private:
     Point corner;
     double Width;
@@ -98,6 +99,15 @@ public:
      * @return Struktura Point reprezentująca róg prostokąta.
      */
     Point getCorner();
+    bool Colision(Point point) override;\
+    bool Colision(Line line) override;
+    double getWidht();
+    double getHeight();
+    Point getA() const;
+    Point getB() const;
+    Point getC() const;
+    Point getD() const;
+
 };
 
 
